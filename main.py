@@ -430,7 +430,7 @@ mbti_pokemon = {
 }
 
 # ==================== MBTI 궁합 데이터 ====================
-mbti_compatibility =
+mbti_compatibility = [
     "INTJ": {"best": ["ENFP", "ENTP"], "good": ["INFJ", "INFP"], "desc": "지적인 자극을 주는 ENFP/ENTP와 환상의 케미! 🔥"},
     "INTP": {"best": ["ENTJ", "ESTJ"], "good": ["INFJ", "ENFJ"], "desc": "추진력 있는 ENTJ/ESTJ가 당신의 아이디어를 실현시켜줘요! 💡"},
     "ENTJ": {"best": ["INTP", "INFP"], "good": ["ENFP", "INTJ"], "desc": "당신의 비전을 이해해주는 INTP/INFP와 완벽한 콤비! 👑"},
@@ -447,6 +447,8 @@ mbti_compatibility =
     "ISFP": {"best": ["ENFJ", "ESFJ"], "good": ["ESTJ", "ISFP"], "desc": "리더십 있는 ENFJ/ESFJ가 당신을 빛나게 해요! 🌺"},
     "ESTP": {"best": ["ISTJ", "ISFJ"], "good": ["ESFP", "ESTP"], "desc": "차분한 ISTJ/ISFJ가 당신의 에너지를 안정시켜줘요! ⚡"},
     "ESFP": {"best": ["ISTJ", "ISFJ"], "good": ["ESFJ", "ENFP"], "desc": "신뢰감 있는 ISTJ/ISFJ와 완벽한 케미! 🎤"},
+]
+
 # ==================== MBTI 검사 질문 ====================
 mbti_questions = [
     {"q": "1. 주말에 시간이 생기면?", "a": "🎉 친구들과 신나게 놀러간다!", "b": "🌙 집에서 혼자만의 시간을 즐긴다", "type": "EI"},
