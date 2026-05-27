@@ -1,4 +1,4 @@
-import streamlit import streamlit as st
+import streamlit as st
 import random
 
 # 페이지 설정
