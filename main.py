@@ -430,7 +430,7 @@ mbti_pokemon = {
 }
 
 # ==================== MBTI 궁합 데이터 ====================
-mbti_compatibility = {
+mbti_compatibility =
     "INTJ": {"best": ["ENFP", "ENTP"], "good": ["INFJ", "INFP"], "desc": "지적인 자극을 주는 ENFP/ENTP와 환상의 케미! 🔥"},
     "INTP": {"best": ["ENTJ", "ESTJ"], "good": ["INFJ", "ENFJ"], "desc": "추진력 있는 ENTJ/ESTJ가 당신의 아이디어를 실현시켜줘요! 💡"},
     "ENTJ": {"best": ["INTP", "INFP"], "good": ["ENFP", "INTJ"], "desc": "당신의 비전을 이해해주는 INTP/INFP와 완벽한 콤비! 👑"},
