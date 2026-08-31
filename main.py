@@ -78,7 +78,10 @@ mbti_villagers = {
 
 # 랜덤으로 결과를 화면에 출력해주는 함수
 def show_result(mbti_result):
+    # 선택된 MBTI의 캐릭터 리스트를 가져옵니다.
     villager_list = mbti_villagers[mbti_result]
+    
+    # 리스트 중에서 랜덤으로 1명을 뽑습니다!
     result_data = random.choice(villager_list)
     
     st.write("---")
@@ -89,48 +92,42 @@ def show_result(mbti_result):
     
     st.info(f"**{result_data['name']}**는(은) {result_data['desc']}")
     st.balloons()
-    st.success("당곡고 친구들에게 결과를 공유해 보세요! 🥰")
+    st.success("팁💡: 같은 MBTI라도 다시 버튼을 누르면 다른 친구가 나올 수 있어요!")
 
 # --- 화면 구성 시작 ---
 st.title("🏕️ 모여봐요 동물의 숲 주민 추천기 🍃")
-st.write("간단한 테스트를 통해 나에게 딱 맞는 동숲 주민을 찾아보세요! ✈️🏝️")
-st.write("---")
+st.write("나의 MBTI를 알아보거나 선택해서, 나에게 맞는 주민을 찾아보세요! ✈️🏝️")
 
-# 1. MBTI 검사를 제일 상단에 배치
-st.header("📝 1. 나에게 어울리는 주민 찾기 테스트")
-st.caption("질문을 읽고 나에게 가장 가까운 행동을 선택해 보세요!")
+# 탭 기능 생성
+tab1, tab2 = st.tabs(["📝 간단 MBTI 검사", "🔍 MBTI 직접 선택"])
 
-q1 = st.radio("1. 주말에 에너지를 충전하는 방법은?", ["(선택 안함)", "밖에서 친구들과 신나게 놀기 🏃‍♂️", "집에서 뒹굴거리며 혼자 쉬기 🛌"])
-q2 = st.radio("2. 문제를 해결할 때 나는?", ["(선택 안함)", "현실적이고 실용적인 방법을 찾는다 🔍", "창의적이고 새로운 아이디어를 떠올린다 💡"])
-q3 = st.radio("3. 친구가 고민을 털어놓을 때 나는?", ["(선택 안함)", "문제의 원인을 분석하고 해결책을 제시한다 🛠️", "친구의 감정에 먼저 공감하고 위로해준다 💖"])
-q4 = st.radio("4. 여행을 갈 때 나는?", ["(선택 안함)", "철저하게 일정을 계획하고 움직인다 📅", "발길이 닿는 대로 즉흥적인 여행을 즐긴다 🚶‍♂️"])
+with tab1:
+    st.markdown("### 🧐 나에게 어울리는 주민 찾기 테스트")
+    
+    q1 = st.radio("1. 주말에 에너지를 충전하는 방법은?", ["(선택 안함)", "밖에서 친구들과 신나게 놀기 🏃‍♂️", "집에서 뒹굴거리며 혼자 쉬기 🛌"])
+    q2 = st.radio("2. 문제를 해결할 때 나는?", ["(선택 안함)", "현실적이고 실용적인 방법을 찾는다 🔍", "창의적이고 새로운 아이디어를 떠올린다 💡"])
+    q3 = st.radio("3. 친구가 고민을 털어놓을 때 나는?", ["(선택 안함)", "문제의 원인을 분석하고 해결책을 제시한다 🛠️", "친구의 감정에 먼저 공감하고 위로해준다 💖"])
+    q4 = st.radio("4. 여행을 갈 때 나는?", ["(선택 안함)", "철저하게 일정을 계획하고 움직인다 📅", "발길이 닿는 대로 즉흥적인 여행을 즐긴다 🚶‍♂️"])
 
-if st.button("내 결과 확인하기! 🎁", key="test_btn"):
-    if "(선택 안함)" in [q1, q2, q3, q4]:
-        st.warning("앗! 모든 질문에 답을 골라주세요. 😅")
-    else:
-        # E/I, S/N, T/F, J/P 조합 로직
-        mbti_str = ""
-        mbti_str += "E" if "밖에서" in q1 else "I"
-        mbti_str += "S" if "현실적이고" in q2 else "N"
-        mbti_str += "T" if "원인을 분석하고" in q3 else "F"
-        mbti_str += "J" if "철저하게" in q4 else "P"
-        
-        show_result(mbti_str)
+    if st.button("검사 결과 보기! 🎁", key="test_btn"):
+        if "(선택 안함)" in [q1, q2, q3, q4]:
+            st.warning("앗! 모든 질문에 답을 골라주세요. 😅")
+        else:
+            mbti_str = ""
+            mbti_str += "E" if "밖에서" in q1 else "I"
+            mbti_str += "S" if "현실적이고" in q2 else "N"
+            mbti_str += "T" if "원인을 분석하고" in q3 else "F"
+            mbti_str += "J" if "철저하게" in q4 else "P"
+            
+            show_result(mbti_str)
 
-st.write("")
-st.write("")
-st.write("---") # 화면 분리선
+with tab2:
+    st.markdown("### 🔍 이미 내 MBTI를 알고 있다면?")
+    mbti_list = list(mbti_villagers.keys())
+    selected_mbti = st.selectbox("당신의 MBTI는 무엇인가요?", ["선택해주세요!"] + mbti_list)
 
-# 2. 이미 MBTI를 아는 사람들을 위한 기능은 아래쪽에 배치
-st.header("🔍 2. 내 MBTI 직접 선택하기")
-st.caption("이미 내 MBTI를 알고 있다면 아래에서 바로 선택해 보세요!")
-
-mbti_list = list(mbti_villagers.keys())
-selected_mbti = st.selectbox("당신의 MBTI는 무엇인가요?", ["선택해주세요!"] + mbti_list)
-
-if st.button("바로 결과 확인하기! 🎲", key="select_btn"):
-    if selected_mbti == "선택해주세요!":
-        st.warning("앗! MBTI를 먼저 선택해주세요. 😅")
-    else:
-        show_result(selected_mbti)
+    if st.button("바로 결과 확인하기! 🎲", key="select_btn"):
+        if selected_mbti == "선택해주세요!":
+            st.warning("앗! MBTI를 먼저 선택해주세요. 😅")
+        else:
+            show_result(selected_mbti)
